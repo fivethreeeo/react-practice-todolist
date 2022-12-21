@@ -1,22 +1,17 @@
-import { v4 as uuidv4 } from 'uuid';
-
 export default function itemsReducer(items, action) {
-  switch (action.type) {
+  const { type, item } = action;
+
+  switch (type) {
     case 'added': {
-      const { content } = action;
-      return [...items, { id: uuidv4(), content, completed: false }];
+      return [...items, item];
     }
 
     case 'deleted': {
-      const { id } = action;
-      return items.filter(item => item.id !== id);
+      return items.filter(({ id }) => id !== item.id);
     }
 
-    case 'checked': {
-      const { id } = action;
-      return items.map(item =>
-        item.id !== id ? item : { ...item, completed: !item.completed }
-      );
+    case 'updated': {
+      return items.map(prev => (prev.id === item.id ? item : prev));
     }
   }
 }

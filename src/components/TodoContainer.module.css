@@ -4,18 +4,3 @@
   border-radius: 16px;
   background-color: #eee;
 }
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  padding: 24px 24px 20px;
-}
-
-.list {
-  border-top: 1px solid #aaa;
-  border-bottom: 1px solid #aaa;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 16px 24px;
-}

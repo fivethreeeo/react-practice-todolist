@@ -1,27 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './TodoItem.module.css';
 
-export default function TodoItem({
-  id,
-  content,
-  checked,
-  handleCheck,
-  handleDelete,
-}) {
-  const [isChecked, setIsChecked] = useState(checked);
+export default function TodoItem({ item, onUpdate, onDelete }) {
+  const { id, text, status } = item;
+
+  const handleChange = ({ target }) =>
+    onUpdate({ ...item, status: target.checked ? 'done' : 'doing' });
 
   return (
     <div className={styles.item}>
       <input
         type='checkbox'
-        checked={isChecked}
-        onChange={() => {
-          handleCheck(id);
-          setIsChecked(checked => !checked);
-        }}
+        id={id}
+        checked={status === 'done'}
+        onChange={handleChange}
       />
-      <span>{content}</span>
-      <button onClick={() => handleDelete(id)}>x</button>
+      <label htmlFor={id}>{text}</label>
+      <button onClick={() => onDelete(item)}>x</button>
     </div>
   );
 }

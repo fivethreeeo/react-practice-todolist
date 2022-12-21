@@ -1,3 +1,9 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 24px 24px 20px;
+}
+
 .filterWrap {
   display: flex;
   gap: 16px;
